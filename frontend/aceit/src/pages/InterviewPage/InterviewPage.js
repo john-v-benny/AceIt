@@ -34,22 +34,23 @@ const InterviewPage = () => {
   // Send video frames to the backend for posture analysis
   const sendFrameForAnalysis = async () => {
     if (!videoRef.current) return;
-
+  
     const canvas = document.createElement("canvas");
     canvas.width = videoRef.current.videoWidth;
     canvas.height = videoRef.current.videoHeight;
     const context = canvas.getContext("2d");
     context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-
-    const imageData = canvas.toDataURL("image/jpeg");
-
+  
+    const imageData = canvas.toDataURL("image/jpeg"); // Convert frame to Base64
+  
     try {
-      const response = await axios.post("/api/analyze-posture", { image: imageData });
-      setFeedback(response.data.feedback); // Update feedback from the backend
+      const response = await axios.post("http://127.0.0.1:8000/api/analyze-posture/", { image: imageData });
+      setFeedback(response.data.feedback); // Update feedback from backend
     } catch (error) {
       console.error("Error analyzing posture:", error);
     }
   };
+  
 
   // Fetch a new question and start webcam when the component mounts
   useEffect(() => {

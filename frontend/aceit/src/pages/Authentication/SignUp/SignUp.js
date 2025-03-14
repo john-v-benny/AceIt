@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios"; // Import axios for making API requests
 import "./SignUp.css";
 
 const Signup = () => {
@@ -10,13 +10,22 @@ const Signup = () => {
     confirmPassword: "",
   });
 
+  const [message, setMessage] = useState(""); // To store success/error messages
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Signup Submitted", formData);
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/register/", formData);
+      setMessage(response.data.message); // Show success message
+      console.log("User Registered:", response.data);
+    } catch (error) {
+      setMessage(error.response?.data?.error || "Signup failed");
+      console.error("Signup Error:", error);
+    }
   };
 
   return (
@@ -32,6 +41,7 @@ const Signup = () => {
         {/* Right Side - Signup Form */}
         <div className="signup-form">
           <h2>Sign Up</h2>
+          {message && <p className="message">{message}</p>} {/* Display messages */}
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -57,6 +67,7 @@ const Signup = () => {
               onChange={handleChange}
               required
             />
+<<<<<<< HEAD
             <input
               type="password"
               name="confirmPassword"
@@ -75,6 +86,15 @@ const Signup = () => {
               <p>Already have an account? <Link to="/login">Login here</Link></p>
             </div>
           </form>
+=======
+            <button type="submit" className="btn-signin">Sign Up</button>
+          </form>
+
+          {/* Buttons Section */}
+          <div className="button-group">
+            <button className="btn-login">Login</button>
+          </div>
+>>>>>>> 6fdf85c353a71a9e1ada3a27cbde19ec82324c8c
         </div>
       </div>
     </div>
