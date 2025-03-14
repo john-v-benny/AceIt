@@ -1,0 +1,103 @@
+/* Wrapper to center the container */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f0f2f5;
+}
+
+/* Smaller container in the center */
+.login-container {
+  display: flex;
+  width: 60%;
+  max-width: 900px;
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Login Media (Video) */
+.login-media {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Login Form */
+.login-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 2rem;
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Input Fields */
+.login-form input {
+  width: 80%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Forgot Password Link */
+.forgot-password {
+  width: 80%;
+  text-align: right;
+  margin-top: 5px;
+}
+
+.forgot-password a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 14px;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* Button Group (for alignment) */
+.button-group {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Login Button */
+.login-form button {
+  width: 60%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
