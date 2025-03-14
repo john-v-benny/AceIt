@@ -8,7 +8,7 @@ const Home = () => {
     <div className="home-container">
       <h1>Welcome to ACEIT</h1>
       <p>Prepare for interviews with AI-powered feedback and mock sessions.</p>
-      <Link to="/" className="btn">Get Started</Link>
+      <Link to="/InterviewPage" className="btn">Get Started</Link>
       <Features/>
     </div>
   );
