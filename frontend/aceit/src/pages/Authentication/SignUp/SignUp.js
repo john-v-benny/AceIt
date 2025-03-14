@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import "./SignUp.css"; 
+import { Link } from "react-router-dom";
+import "./SignUp.css";
 
-const SignUp = () => {
+const Signup = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -14,21 +16,21 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted", formData);
+    console.log("Signup Submitted", formData);
   };
 
   return (
     <div className="signup-wrapper">
-       <div className="signup-container">
+      <div className="signup-container">
         {/* Left Side - Video */}
         <div className="signup-media">
           <video autoPlay loop muted>
             <source src={`${process.env.PUBLIC_URL}/videos/login.mp4`} type="video/mp4" />
-          </video> 
-       </div>
+          </video>
+        </div>
 
-      {/* Right Side - Signup Form */}
-      <div className="signup-form">
+        {/* Right Side - Signup Form */}
+        <div className="signup-form">
           <h2>Sign Up</h2>
           <form onSubmit={handleSubmit}>
             <input
@@ -55,17 +57,28 @@ const SignUp = () => {
               onChange={handleChange}
               required
             />
-          </form>
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
 
-          {/* Buttons Section */}
-          <div className="button-group">
-            <button className="btn-login">Login</button>
-            <button className="btn-signin">Sign Up</button>
-          </div>
+            <div className="button-group">
+              <button type="submit">Sign Up</button>
+            </div>
+
+            {/* Already have an account? Login Link */}
+            <div className="login-link">
+              <p>Already have an account? <Link to="/login">Login here</Link></p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default Signup;
