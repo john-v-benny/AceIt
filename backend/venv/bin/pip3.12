@@ -1,4 +1,4 @@
-#!/home/advay/Desktop/aceit/AceIt/backend/venv/bin/python
+#!/home/advay/Desktop/aceit/AceIt/AceIt/backend/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
