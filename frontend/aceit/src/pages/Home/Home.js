@@ -13,7 +13,7 @@ const Home = () => {
       </div>
       <div className="video-container">
         <video>
-          <source src=""></source>
+          <source src={`${process.env.PUBLIC_URL}/videos/login.mp4`} type="video/mp4" />
         </video>
       </div>
     </div>
