@@ -8,10 +8,11 @@ const App = () => {
   return (
     <Router>
       <Navbar />
-      <Routes>
+      <Home />
+      {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/features" element={<Features />} />
-      </Routes>
+      </Routes> */}
     </Router>
   );
 };
