@@ -1,0 +1,59 @@
+# Python-related files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+
+# Virtual Environment
+venv/
+env/
+*.venv
+*.env
+*.virtualenv
+Pipfile
+Pipfile.lock
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+
+# Django-specific files
+db.sqlite3
+media/
+static/
+*.log
+local_settings.py
+.env
+config.json
+
+# Migrations (optional: keep if tracking)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Compiled Files
+*.out
+*.class
+*.o
+
+# Node Modules (if frontend exists)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Logs & Debugging
+logs/
+*.log
+*.pot
+
+# Docker
+docker-compose.override.yml
+.env.docker
+
+# System Files
+.DS_Store
+Thumbs.db
+desktop.ini
