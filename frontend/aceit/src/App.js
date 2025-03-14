@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Features from "./pages/Features/Features";
 import InterviewPage from "./pages/InterviewPage/InterviewPage";
+import SignUp from "./pages/Authentication/SignUp/SignIn";
+import "./SignUp.css";
 
 const App = () => {
   return (
@@ -13,6 +15,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/features" element={<Features />} />
         <Route path="/InterviewPage" element={<InterviewPage />} />
+        <Route path="/signUp" element={<SignUp />} />
       </Routes>
     </Router>
   );
