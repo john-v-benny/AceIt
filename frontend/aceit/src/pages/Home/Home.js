@@ -14,7 +14,7 @@ const Home = () => {
         </Link>
       </div>
       <div className="video-container">
-        <video>
+        <video autoPlay loop muted>
           <source src={`${process.env.PUBLIC_URL}/videos/login.mp4`} type="video/mp4" />
         </video>
       </div>
@@ -23,3 +23,4 @@ const Home = () => {
 };
 
 export default Home;
+
