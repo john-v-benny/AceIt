@@ -1,9 +1,8 @@
 from django.shortcuts import render
-
-# Create your views here.
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import UserSerializer
@@ -31,13 +30,15 @@ def register_user(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def login_user(request):
-    from django.contrib.auth import authenticate
-    
-    username = request.data.get('username')
+    email = request.data.get('username')  # Email is being used as the username
     password = request.data.get('password')
-    
-    user = authenticate(username=username, password=password)
-    if user:
-        token = get_tokens_for_user(user)
-        return Response({"message": "Login successful!", "token": token})
-    return Response({"error": "Invalid credentials"}, status=400)
+
+    try:
+        user = User.objects.get(email=email)
+        user = authenticate(username=user.username, password=password)
+        if user:
+            token = get_tokens_for_user(user)
+            return Response({"message": "Login successful!", "token": token})
+        return Response({"error": "Invalid credentials"}, status=400)
+    except User.DoesNotExist:
+        return Response({"error": "User not found"}, status=400)

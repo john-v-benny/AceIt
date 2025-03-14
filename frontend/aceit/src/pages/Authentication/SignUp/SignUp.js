@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./SignUp.css"; 
+import axios from "axios"; // Import axios for making API requests
+import "./SignUp.css";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -8,28 +9,38 @@ const SignUp = () => {
     password: "",
   });
 
+  const [message, setMessage] = useState(""); // To store success/error messages
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted", formData);
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/register/", formData);
+      setMessage(response.data.message); // Show success message
+      console.log("User Registered:", response.data);
+    } catch (error) {
+      setMessage(error.response?.data?.error || "Signup failed");
+      console.error("Signup Error:", error);
+    }
   };
 
   return (
     <div className="signup-wrapper">
-       <div className="signup-container">
+      <div className="signup-container">
         {/* Left Side - Video */}
         <div className="signup-media">
           <video autoPlay loop muted>
             <source src={`${process.env.PUBLIC_URL}/videos/login.mp4`} type="video/mp4" />
-          </video> 
-       </div>
+          </video>
+        </div>
 
-      {/* Right Side - Signup Form */}
-      <div className="signup-form">
+        {/* Right Side - Signup Form */}
+        <div className="signup-form">
           <h2>Sign Up</h2>
+          {message && <p className="message">{message}</p>} {/* Display messages */}
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -55,12 +66,12 @@ const SignUp = () => {
               onChange={handleChange}
               required
             />
+            <button type="submit" className="btn-signin">Sign Up</button>
           </form>
 
           {/* Buttons Section */}
           <div className="button-group">
             <button className="btn-login">Login</button>
-            <button className="btn-signin">Sign Up</button>
           </div>
         </div>
       </div>
