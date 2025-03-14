@@ -1,12 +1,12 @@
 .Navbar {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   align-items: center;
+  position: fixed;
+  width: 100vw;
+  grid-template-columns: 1fr 1fr;
   font-family: "Poppins", sans-serif;
   font-size: 3rem;
   padding: 1rem;
-  /* background-color: aqua; */
-  /* background-color: #EEEEEE; */
 
   .title {
     font-weight: 500;

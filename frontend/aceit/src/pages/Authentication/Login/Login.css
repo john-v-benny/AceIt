@@ -50,7 +50,7 @@
 
 /* Input Fields */
 .login-form input {
-  width: 80%;
+  width: 90%;
   padding: 12px;
   margin: 10px 0;
   border: 1px solid #ccc;
@@ -60,7 +60,7 @@
 
 /* Forgot Password Link */
 .forgot-password {
-  width: 80%;
+  width: 100%;
   text-align: right;
   margin-top: 5px;
 }
@@ -77,18 +77,19 @@
 
 /* Button Group (for alignment) */
 .button-group {
-  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: right;
   margin-top: 20px;
 }
 
 /* Login Button */
 .login-form button {
-  width: 60%;
+  width: 7rem;
   padding: 15px;
+  margin-right: 0.3rem;
   border: none;
-  border-radius: 8px;
+  border-bottom-left-radius: 1rem;
+  border-top-left-radius: 1rem;
   cursor: pointer;
   background-color: #007bff;
   color: white;

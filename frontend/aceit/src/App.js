@@ -6,19 +6,22 @@ import Features from "./pages/Features/Features";
 import InterviewPage from "./pages/InterviewPage/InterviewPage";
 import SignUp from "./pages/Authentication/SignUp/SignUp.js"
 import Login from "./pages/Authentication/Login/Login";
+import "./App.css"
 
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/features" element={<Features />} />
-        <Route path="/InterviewPage" element={<InterviewPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signUp" element={<SignUp />} />
-      </Routes>
-    </Router>
+    <div className="App">
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/InterviewPage" element={<InterviewPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signUp" element={<SignUp />} />
+        </Routes>
+      </Router>
+    </div>
         
   );
 };

@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import axios from "axios"; // Import axios for making API requests
 import "./SignUp.css";
 
-const SignUp = () => {
+const Signup = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const [message, setMessage] = useState(""); // To store success/error messages
@@ -66,6 +67,26 @@ const SignUp = () => {
               onChange={handleChange}
               required
             />
+<<<<<<< HEAD
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+
+            <div className="button-group">
+              <button type="submit">Sign Up</button>
+            </div>
+
+            {/* Already have an account? Login Link */}
+            <div className="login-link">
+              <p>Already have an account? <Link to="/login">Login here</Link></p>
+            </div>
+          </form>
+=======
             <button type="submit" className="btn-signin">Sign Up</button>
           </form>
 
@@ -73,10 +94,11 @@ const SignUp = () => {
           <div className="button-group">
             <button className="btn-login">Login</button>
           </div>
+>>>>>>> 6fdf85c353a71a9e1ada3a27cbde19ec82324c8c
         </div>
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default Signup;
