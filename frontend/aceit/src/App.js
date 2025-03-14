@@ -5,7 +5,7 @@ import Home from "./pages/Home/Home";
 import Features from "./pages/Features/Features";
 import InterviewPage from "./pages/InterviewPage/InterviewPage";
 import Login from "./pages/Authentication/Login/Login";
-import SignUp from "./pages/Authentication/SignUp/SignIn";
+import SignUp from "./pages/Authentication/SignUp/SignUp";
 
 
 const App = () => {
