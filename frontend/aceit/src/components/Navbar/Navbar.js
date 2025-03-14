@@ -4,14 +4,16 @@ import "./Navbar.css";
 
 const Navbar = () => {
   return (
-    <header>
-      <span>ACEIT - Interview Training</span>
-      <nav className="nav-links">
+    <div className="Navbar">
+      <div className="title">
+        <span>Ace-iT</span>
+      </div>
+      <div className="links">
         <Link to="/">Home</Link>
-        <Link to="/features">Features</Link>
-        <Link to="/login">Login</Link>
-      </nav>
-    </header>
+        <Link>Features</Link>
+        <Link className="login" to="/login">Login</Link>
+      </div>
+    </div>
   );
 };
 

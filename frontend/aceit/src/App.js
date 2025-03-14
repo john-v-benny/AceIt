@@ -4,9 +4,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Features from "./pages/Features/Features";
 import InterviewPage from "./pages/InterviewPage/InterviewPage";
+import SignUp from "./pages/Authentication/SignUp/SignUp.js"
 import Login from "./pages/Authentication/Login/Login";
-import SignUp from "./pages/Authentication/SignUp/SignUp";
-
 
 const App = () => {
   return (
@@ -20,6 +19,7 @@ const App = () => {
         <Route path="/signUp" element={<SignUp />} />
       </Routes>
     </Router>
+        
   );
 };
 

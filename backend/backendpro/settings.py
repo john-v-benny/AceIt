@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'user',
     'rest_framework',  
     'rest_framework_simplejwt',
-    'userinput'
+    'generate_question',
+    
 ]
 
 MIDDLEWARE = [

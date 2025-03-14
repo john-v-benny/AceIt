@@ -5,11 +5,19 @@ import Features from "../Features/Features";
 
 const Home = () => {
   return (
-    <div className="home-container">
-      <h1>Welcome to ACEIT</h1>
-      <p>Prepare for interviews with AI-powered feedback and mock sessions.</p>
-      <Link to="/InterviewPage" className="btn">Get Started</Link>
-      <Features/>
+    <div className="Home">
+      <div className="title">
+        <p className="a">Cracking your dream job</p>
+        <p className="b">Prepare for interviews with AI-powered feedback and mock sessions.</p>
+        <Link to="/InterviewPage">
+          <button className="start">Get started</button>
+        </Link>
+      </div>
+      <div className="video-container">
+        <video>
+          <source src={`${process.env.PUBLIC_URL}/videos/login.mp4`} type="video/mp4" />
+        </video>
+      </div>
     </div>
   );
 };
