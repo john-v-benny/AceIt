@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios"; // Import axios for making API requests
 import "./SignUp.css";
@@ -67,7 +68,6 @@ const Signup = () => {
               onChange={handleChange}
               required
             />
-<<<<<<< HEAD
             <input
               type="password"
               name="confirmPassword"
@@ -86,15 +86,6 @@ const Signup = () => {
               <p>Already have an account? <Link to="/login">Login here</Link></p>
             </div>
           </form>
-=======
-            <button type="submit" className="btn-signin">Sign Up</button>
-          </form>
-
-          {/* Buttons Section */}
-          <div className="button-group">
-            <button className="btn-login">Login</button>
-          </div>
->>>>>>> 6fdf85c353a71a9e1ada3a27cbde19ec82324c8c
         </div>
       </div>
     </div>

@@ -23,7 +23,20 @@
       margin-top: 1rem;
       color: #A1A1A1;
       font-size: 1.47rem;
+      font-style: italic;
+    }
 
+    .text {
+      width: 41.7rem;
+      padding: 1.1rem;
+      margin: 10px 0;
+      border: 2px solid #D9D9D9;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .text:focus {
+      border: 2px solid #007AFF;
     }
 
     .start {
@@ -36,6 +49,7 @@
       padding: 1rem;
       border-top-left-radius: 1rem;
       border-bottom-left-radius: 1rem;
+      cursor: pointer;
     }
   }
 

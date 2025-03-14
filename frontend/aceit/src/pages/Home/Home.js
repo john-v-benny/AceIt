@@ -9,9 +9,15 @@ const Home = () => {
       <div className="title">
         <p className="a">Cracking your dream job</p>
         <p className="b">Prepare for interviews with AI-powered feedback and mock sessions.</p>
+        <div>
+          <input className="text" type="text" placeholder="Enter your qualifications and skills" />
+        </div>
         <Link to="/InterviewPage">
           <button className="start">Get started</button>
         </Link>
+        <div>
+          
+        </div>
       </div>
       <div className="video-container">
         <video autoPlay loop muted>
