@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class UserinputConfig(AppConfig):
+class GenerateQuestionConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'userinput'
+    name = 'generate_question'
