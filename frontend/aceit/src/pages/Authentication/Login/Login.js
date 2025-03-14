@@ -32,9 +32,9 @@ const Login = () => {
           <h2>Login</h2>
           <form onSubmit={handleSubmit}>
             <input
-              type="email"
-              name="email"
-              placeholder="Email"
+              type="Username"
+              name="Username"
+              placeholder="Username"
               value={formData.email}
               onChange={handleChange}
               required

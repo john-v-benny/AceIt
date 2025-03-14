@@ -9,9 +9,9 @@ const Navbar = () => {
         <span>Ace-iT</span>
       </div>
       <div className="links">
-        <Link>Home</Link>
+        <Link to="/">Home</Link>
         <Link>Features</Link>
-        <Link className="login">Login</Link>
+        <Link className="login" to="/login">Login</Link>
       </div>
     </div>
   );
