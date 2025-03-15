@@ -84,7 +84,7 @@ const InterviewPage = () => {
       // Camera Feed Section
       React.createElement(
         "div",
-        { className: "section" },
+        { className: "section-1" },
         React.createElement("h2", null, "Camera Feed"),
         React.createElement("video", {
           ref: videoRef,
@@ -96,9 +96,9 @@ const InterviewPage = () => {
       // Question Display Section
       React.createElement(
         "div",
-        { className: "section" },
+        { className: "section-2" },
         React.createElement("h2", null, "Interview Question"),
-        React.createElement("p", { className: "question" }, question)
+        React.createElement("p", { className: "question" }, "iki")
       )
     ),
     // Right Section (Feedback)
