@@ -1,28 +1,44 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import "./InterviewPage.css"; // Import the CSS file
+import { useLocation } from "react-router-dom";
+import "./InterviewPage.css";
 
 const InterviewPage = () => {
-  const [question, setQuestion] = useState(""); // Stores the current question
-  const [feedback, setFeedback] = useState([]); // Stores posture and speech feedback
-  const videoRef = useRef(null); // Reference for the video element
-  const [stream, setStream] = useState(null); // Stores the webcam stream
+  const [questions, setQuestions] = useState([]);
+  const [feedback, setFeedback] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Track the question index
+  const videoRef = useRef(null);
+  const streamRef = useRef(null);
+  const location = useLocation();
+  const skills = location.state?.skills || "";
 
-  // Fetch a new question from the backend
-  const fetchQuestion = async () => {
+  const fetchQuestions = async () => {
     try {
-      const response = await axios.get("/api/get-question");
-      setQuestion(response.data.question);
+      console.log("Sending skills to backend:", skills);
+      const response = await axios.post("http://127.0.0.1:8000/api/generate/", {
+        skills: skills.split(","),
+      });
+      console.log("Backend response:", response.data);
+
+      if (response.data.questions?.length > 0) {
+        setQuestions(response.data.questions);
+        setCurrentQuestionIndex(0); // Start from the first question
+      } else {
+        setQuestions(["No questions available for the provided skills."]);
+      }
     } catch (error) {
-      console.error("Error fetching question:", error);
+      console.error("Error fetching questions:", error);
+      setQuestions(["Failed to fetch questions. Please try again."]);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Start webcam feed
   const startWebcam = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      setStream(stream);
+      streamRef.current = stream;
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
       }
@@ -31,69 +47,79 @@ const InterviewPage = () => {
     }
   };
 
-  // Send video frames to the backend for posture analysis
+  const stopWebcam = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((track) => track.stop());
+    }
+  };
+
   const sendFrameForAnalysis = async () => {
     if (!videoRef.current) return;
-  
+
     const canvas = document.createElement("canvas");
     canvas.width = videoRef.current.videoWidth;
     canvas.height = videoRef.current.videoHeight;
     const context = canvas.getContext("2d");
     context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-  
-    const imageData = canvas.toDataURL("image/jpeg"); // Convert frame to Base64
-  
+
+    const imageData = canvas.toDataURL("image/jpeg");
+
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/analyze-posture/", { image: imageData });
-      setFeedback(response.data.feedback); // Update feedback from backend
+      const response = await axios.post("http://127.0.0.1:8000/api/analyze-posture/", {
+        image: imageData,
+      });
+      setFeedback(response.data.feedback);
     } catch (error) {
       console.error("Error analyzing posture:", error);
     }
   };
-  
 
-  // Fetch a new question and start webcam when the component mounts
   useEffect(() => {
-    fetchQuestion();
-    startWebcam();
+    if (skills) {
+      fetchQuestions();
+      startWebcam();
+    }
 
-    // Cleanup: Stop the webcam stream when the component unmounts
-    return () => {
-      if (stream) {
-        stream.getTracks().forEach((track) => track.stop());
-      }
-    };
-  }, [stream]); // Add `stream` to the dependency array
+    return stopWebcam;
+  }, [skills]);
 
-  // Send frames for analysis at regular intervals
   useEffect(() => {
     const interval = setInterval(() => {
       sendFrameForAnalysis();
-    }, 5000); // Analyze posture every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
+  const handleNextQuestion = () => {
+    setCurrentQuestionIndex((prevIndex) => 
+      prevIndex < questions.length - 1 ? prevIndex + 1 : prevIndex
+    );
+  };
+
   return (
     <div className="container">
-      {/* Left Section (Camera and Question) */}
       <div className="left-section">
-        {/* Camera Feed Section */}
         <div className="section-1">
           <video ref={videoRef} autoPlay playsInline className="video"></video>
         </div>
-        {/* Question Display Section */}
         <div className="section-2">
-          <span>Interview Question</span>
-          <button>Next</button>
-          <p className="question">iki</p>
+          <h2>Interview Questions</h2>
+          {loading ? (
+            <p>Loading questions...</p>
+          ) : (
+            <div>
+              <p>{questions[currentQuestionIndex]}</p>
+              <button onClick={handleNextQuestion} disabled={currentQuestionIndex >= questions.length - 1}>
+                Next
+              </button>
+            </div>
+          )}
         </div>
       </div>
-  
-      {/* Right Section (Feedback) */}
       <div className="right-section">
         <div className="section-3">
-          <span>Poster and Gesture</span>
+          <span>Posture and Gesture</span>
         </div>
         <div className="section-4">
           <span>Speech</span>
@@ -107,7 +133,6 @@ const InterviewPage = () => {
       </div>
     </div>
   );
-  
 };
 
 export default InterviewPage;

@@ -3,7 +3,6 @@ from rest_framework.response import Response
 from transformers import pipeline
 import os
 from dotenv import load_dotenv
-from transformers import pipeline
 
 # Load environment variables from .env
 load_dotenv()
@@ -25,6 +24,7 @@ def generate_questions(request):
 
     # Improved prompt with an example
     prompt = (
+
         f"Generate 5 detailed interview questions for the following skills: {', '.join(skills)}. "
         f"Each question should be complete and relevant to the skills mentioned. "
         f"Ensure the questions are suitable for a technical interview and cover various aspects of the skills. "
@@ -35,6 +35,7 @@ def generate_questions(request):
         f"3. Can you explain the difference between supervised and unsupervised learning?\n"
         f"4. How would you optimize a Django application for scalability?\n"
         f"5. What is the difference between a list and a tuple in Python?"
+
     )
     
     try:
@@ -42,7 +43,7 @@ def generate_questions(request):
             prompt, 
             max_length=500,  # Increased max_length to allow for more detailed questions
             num_return_sequences=1, 
-            temperature=0.7,  # Adjusts randomness
+            temperature=1,  # Adjusts randomness
             truncation=True  
         )
 
