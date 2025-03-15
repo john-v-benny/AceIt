@@ -7,6 +7,7 @@ const InterviewPage = () => {
   const [questions, setQuestions] = useState([]);
   const [feedback, setFeedback] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Track the question index
   const videoRef = useRef(null);
   const streamRef = useRef(null);
   const location = useLocation();
@@ -22,6 +23,7 @@ const InterviewPage = () => {
 
       if (response.data.questions?.length > 0) {
         setQuestions(response.data.questions);
+        setCurrentQuestionIndex(0); // Start from the first question
       } else {
         setQuestions(["No questions available for the provided skills."]);
       }
@@ -89,6 +91,12 @@ const InterviewPage = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleNextQuestion = () => {
+    setCurrentQuestionIndex((prevIndex) => 
+      prevIndex < questions.length - 1 ? prevIndex + 1 : prevIndex
+    );
+  };
+
   return (
     <div className="container">
       <div className="left-section">
@@ -97,21 +105,21 @@ const InterviewPage = () => {
         </div>
         <div className="section-2">
           <h2>Interview Questions</h2>
-          <button>Next</button>
           {loading ? (
             <p>Loading questions...</p>
           ) : (
-            <ul>
-              {questions.map((question, index) => (
-                <li key={index}>{question}</li>
-              ))}
-            </ul>
+            <div>
+              <p>{questions[currentQuestionIndex]}</p>
+              <button onClick={handleNextQuestion} disabled={currentQuestionIndex >= questions.length - 1}>
+                Next
+              </button>
+            </div>
           )}
         </div>
       </div>
       <div className="right-section">
         <div className="section-3">
-          <span>Poster and Gesture</span>
+          <span>Posture and Gesture</span>
         </div>
         <div className="section-4">
           <span>Speech</span>
