@@ -11,32 +11,37 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 20px;
+    padding: 0 20px;
     height: 100vh;
-    margin: 0 auto;
     gap: 20px; /* Adds space between sections */
   }
   
   /* Left section (Camera and Question) */
   .left-section {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Adds space between camera and question */
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+    padding-top: 6rem;
     max-width: 600px;
   }
   
   /* Right section (Feedback) */
   .right-section {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
     flex: 1;
-    max-width: 400px;
+    max-width: 40rem;
+    padding-top: 6rem;
   }
   
   /* Section styling */
   .section-1 {
     background-color: #fff;
     padding: 10px;
-    margin-top: 6rem;
     border-radius: 8px;
     height: fit-content;
     width: 50rem;
@@ -51,6 +56,28 @@ body {
     border-radius: 8px;
     border: 1px solid #ddd;
     width: 50.3rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .section-3 {
+    font-size: 18px;
+    color: #333;
+    background-color: #f9f9f9;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 39rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .section-4 {
+    font-size: 18px;
+    color: #333;
+    background-color: #f9f9f9;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 39rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   

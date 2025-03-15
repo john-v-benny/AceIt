@@ -85,6 +85,7 @@ const InterviewPage = () => {
     return () => clearInterval(interval);
   }, []);
 
+<<<<<<< HEAD
 
   return (
     <div className="container">
@@ -122,7 +123,35 @@ const InterviewPage = () => {
       </div>
     </div>
 
+=======
+  return (
+    <div className="container">
+      {/* Left Section (Camera and Question) */}
+      <div className="left-section">
+        {/* Camera Feed Section */}
+        <div className="section-1">
+          <video ref={videoRef} autoPlay playsInline className="video"></video>
+        </div>
+        {/* Question Display Section */}
+        <div className="section-2">
+          <h2>Interview Question</h2>
+          <p className="question">iki</p>
+        </div>
+      </div>
+  
+      {/* Right Section (Feedback) */}
+      <div className="right-section">
+        <div className="section-3">
+          <h2>Poster and Gesture</h2>
+        </div>
+        <div className="section-4">
+          <h2>Speech</h2>
+        </div>
+      </div>
+    </div>
+>>>>>>> refs/remotes/origin/main
   );
+  
 };
 
 export default InterviewPage;
