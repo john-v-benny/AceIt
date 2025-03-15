@@ -74,55 +74,33 @@ const InterviewPage = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return React.createElement(
-    "div",
-    { className: "container" },
-    // Left Section (Camera and Question)
-    React.createElement(
-      "div",
-      { className: "left-section" },
-      // Camera Feed Section
-      React.createElement(
-        "div",
-        { className: "section-1" },
-        React.createElement("h2", null, "Camera Feed"),
-        React.createElement("video", {
-          ref: videoRef,
-          autoPlay: true,
-          playsInline: true,
-          className: "video",
-        })
-      ),
-      // Question Display Section
-      React.createElement(
-        "div",
-        { className: "section-2" },
-        React.createElement("h2", null, "Interview Question"),
-        React.createElement("p", { className: "question" }, "iki")
-      )
-    ),
-    // Right Section (Feedback)
-    React.createElement(
-      "div",
-      { className: "right-section" },
-      React.createElement(
-        "div",
-        { className: "section" },
-        React.createElement("h2", null, "Feedback"),
-        React.createElement(
-          "ul",
-          { className: "feedback-list" },
-          feedback.map((item, index) =>
-            React.createElement(
-              "li",
-              { key: index, className: "feedback-item" },
-              item
-            )
-          )
-        )
-      )
-    )
+  return (
+    <div className="container">
+      {/* Left Section (Camera and Question) */}
+      <div className="left-section">
+        {/* Camera Feed Section */}
+        <div className="section-1">
+          <video ref={videoRef} autoPlay playsInline className="video"></video>
+        </div>
+        {/* Question Display Section */}
+        <div className="section-2">
+          <h2>Interview Question</h2>
+          <p className="question">iki</p>
+        </div>
+      </div>
+  
+      {/* Right Section (Feedback) */}
+      <div className="right-section">
+        <div className="section-3">
+          <h2>Poster and Gesture</h2>
+        </div>
+        <div className="section-4">
+          <h2>Speech</h2>
+        </div>
+      </div>
+    </div>
   );
+  
 };
 
 export default InterviewPage;
