@@ -4,13 +4,13 @@ import { useLocation } from "react-router-dom";
 import "./InterviewPage.css";
 
 const InterviewPage = () => {
-  const [questions, setQuestions] = useState([]); // Change to array
+  const [questions, setQuestions] = useState([]);
   const [feedback, setFeedback] = useState([]);
   const [loading, setLoading] = useState(true);
   const videoRef = useRef(null);
-  const [stream, setStream] = useState(null);
+  const streamRef = useRef(null);
   const location = useLocation();
-  const { skills } = location.state || { skills: "" };
+  const skills = location.state?.skills || "";
 
   const fetchQuestions = async () => {
     try {
@@ -20,8 +20,8 @@ const InterviewPage = () => {
       });
       console.log("Backend response:", response.data);
 
-      if (response.data.questions && response.data.questions.length > 0) {
-        setQuestions(response.data.questions); // Store all questions
+      if (response.data.questions?.length > 0) {
+        setQuestions(response.data.questions);
       } else {
         setQuestions(["No questions available for the provided skills."]);
       }
@@ -36,12 +36,18 @@ const InterviewPage = () => {
   const startWebcam = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      setStream(stream);
+      streamRef.current = stream;
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
       }
     } catch (error) {
       console.error("Error accessing webcam:", error);
+    }
+  };
+
+  const stopWebcam = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((track) => track.stop());
     }
   };
 
@@ -67,15 +73,13 @@ const InterviewPage = () => {
   };
 
   useEffect(() => {
-    fetchQuestions();
-    startWebcam();
+    if (skills) {
+      fetchQuestions();
+      startWebcam();
+    }
 
-    return () => {
-      if (stream) {
-        stream.getTracks().forEach((track) => track.stop());
-      }
-    };
-  }, [stream]);
+    return stopWebcam;
+  }, [skills]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -85,73 +89,33 @@ const InterviewPage = () => {
     return () => clearInterval(interval);
   }, []);
 
-<<<<<<< HEAD
-
   return (
     <div className="container">
       <div className="left-section">
-        <div className="section">
-          <h2>Camera Feed</h2>
-          <video ref={videoRef} autoPlay playsInline className="video" />
+        <div className="section-1">
+          <video ref={videoRef} autoPlay playsInline className="video"></video>
         </div>
-        <div className="section">
+        <div className="section-2">
           <h2>Interview Questions</h2>
           {loading ? (
             <p>Loading questions...</p>
           ) : (
-            <ul className="question-list">
-              {questions.map((q, index) => (
-                <li key={index} className="question-item">
-                  {q}
-                </li>
+            <ul>
+              {questions.map((question, index) => (
+                <li key={index}>{question}</li>
               ))}
             </ul>
           )}
         </div>
       </div>
       <div className="right-section">
-        <div className="section">
-          <h2>Feedback</h2>
-          <ul className="feedback-list">
-            {feedback.map((item, index) => (
-              <li key={index} className="feedback-item">
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-
-=======
-  return (
-    <div className="container">
-      {/* Left Section (Camera and Question) */}
-      <div className="left-section">
-        {/* Camera Feed Section */}
-        <div className="section-1">
-          <video ref={videoRef} autoPlay playsInline className="video"></video>
-        </div>
-        {/* Question Display Section */}
-        <div className="section-2">
-          <h2>Interview Question</h2>
-          <p className="question">iki</p>
-        </div>
-      </div>
-  
-      {/* Right Section (Feedback) */}
-      <div className="right-section">
         <div className="section-3">
-          <h2>Poster and Gesture</h2>
-        </div>
-        <div className="section-4">
-          <h2>Speech</h2>
+          <h2>Posture and Gesture Feedback</h2>
+          <p>{feedback}</p>
         </div>
       </div>
     </div>
->>>>>>> refs/remotes/origin/main
   );
-  
 };
 
 export default InterviewPage;

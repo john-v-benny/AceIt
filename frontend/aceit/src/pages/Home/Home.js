@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
 const Home = () => {
   const [skills, setSkills] = useState("");
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setSkills(e.target.value);
@@ -14,6 +15,7 @@ const Home = () => {
       alert("Please enter your qualifications and skills.");
       return;
     }
+    navigate("/InterviewPage", { state: { skills } }); // Navigate with skills
   };
 
   return (
@@ -30,11 +32,9 @@ const Home = () => {
             onChange={handleInputChange}
           />
         </div>
-        <Link to={{ pathname: "/InterviewPage", state: { skills } }}>
-          <button className="start" onClick={handleGetStarted}>
-            Get started
-          </button>
-        </Link>
+        <button className="start" onClick={handleGetStarted}>
+          Get started
+        </button>
       </div>
       <div className="video-container">
         <video autoPlay loop muted>
