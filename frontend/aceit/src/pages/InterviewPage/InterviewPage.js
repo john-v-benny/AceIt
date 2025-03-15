@@ -84,7 +84,8 @@ const InterviewPage = () => {
         </div>
         {/* Question Display Section */}
         <div className="section-2">
-          <h2>Interview Question</h2>
+          <span>Interview Question</span>
+          <button>Next</button>
           <p className="question">iki</p>
         </div>
       </div>
@@ -92,10 +93,10 @@ const InterviewPage = () => {
       {/* Right Section (Feedback) */}
       <div className="right-section">
         <div className="section-3">
-          <h2>Poster and Gesture</h2>
+          <span>Poster and Gesture</span>
         </div>
         <div className="section-4">
-          <h2>Speech</h2>
+          <span>Speech</span>
         </div>
       </div>
     </div>
