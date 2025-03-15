@@ -1,23 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import Features from "../Features/Features";
 
 const Home = () => {
+  const [skills, setSkills] = useState("");
+
+  const handleInputChange = (e) => {
+    setSkills(e.target.value);
+  };
+
+  const handleGetStarted = () => {
+    if (!skills.trim()) {
+      alert("Please enter your qualifications and skills.");
+      return;
+    }
+  };
+
   return (
     <div className="Home">
       <div className="title">
         <p className="a">Cracking your dream job</p>
         <p className="b">Prepare for interviews with AI-powered feedback and mock sessions.</p>
         <div>
-          <input className="text" type="text" placeholder="Enter your qualifications and skills" />
+          <input
+            className="text"
+            type="text"
+            placeholder="Enter your qualifications and skills"
+            value={skills}
+            onChange={handleInputChange}
+          />
         </div>
-        <Link to="/InterviewPage">
-          <button className="start">Get started</button>
+        <Link to={{ pathname: "/InterviewPage", state: { skills } }}>
+          <button className="start" onClick={handleGetStarted}>
+            Get started
+          </button>
         </Link>
-        <div>
-          
-        </div>
       </div>
       <div className="video-container">
         <video autoPlay loop muted>
@@ -29,4 +46,3 @@ const Home = () => {
 };
 
 export default Home;
-
