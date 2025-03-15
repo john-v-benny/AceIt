@@ -97,6 +97,7 @@ const InterviewPage = () => {
         </div>
         <div className="section-2">
           <h2>Interview Questions</h2>
+          <button>Next</button>
           {loading ? (
             <p>Loading questions...</p>
           ) : (
@@ -110,8 +111,10 @@ const InterviewPage = () => {
       </div>
       <div className="right-section">
         <div className="section-3">
-          <h2>Posture and Gesture Feedback</h2>
-          <p>{feedback}</p>
+          <span>Poster and Gesture</span>
+        </div>
+        <div className="section-4">
+          <span>Speech</span>
         </div>
       </div>
     </div>
