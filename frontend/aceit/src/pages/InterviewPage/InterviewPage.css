@@ -30,7 +30,7 @@ body {
   /* Right section (Feedback) */
   .right-section {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     gap: 1rem;
     padding: 1rem 0;
     flex: 1;
@@ -82,6 +82,17 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
+  .section-5 {
+    font-size: 18px;
+    color: #333;
+    background-color: #f9f9f9;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 39rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
   /* Video feed styling */
   .video {
     width: 100%;
@@ -91,6 +102,7 @@ body {
   
   /* Question display styling */
   .question {
+    text-align: left;
     border: 2px solid #ccc;
     border-radius: 8px;
     padding: 0.5rem;
@@ -129,4 +141,15 @@ body {
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
     cursor: pointer;
+  }
+
+  a{
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    color: #007AFF;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
