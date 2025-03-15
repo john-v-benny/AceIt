@@ -124,6 +124,12 @@ const InterviewPage = () => {
         <div className="section-4">
           <span>Speech</span>
         </div>
+        <div className="section-5">
+          <span>Reference links</span>
+          <p><a href="https://leetcode.com/">Leetcode for coding challenges</a></p>
+          <p><a href="https://www.youtube.com/watch?v=gDN7cJ3Rt80">Training for Interview</a></p>
+          <p><a href="https://www.youtube.com/watch?v=G3e-cpL7ofc&t=19111s">Html and css beginner classes</a></p>
+        </div>
       </div>
     </div>
   );

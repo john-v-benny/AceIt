@@ -19,15 +19,33 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Ensure password confirmation
+    if (formData.password !== formData.confirmPassword) {
+      setMessage("Passwords do not match!");
+      return;
+    }
+  
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/register/", formData);
-      setMessage(response.data.message); // Show success message
+      const response = await axios.post("http://127.0.0.1:8000/api/register/", {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+      });
+  
+      setMessage(response.data.message); // Success message
       console.log("User Registered:", response.data);
+  
+      // Optionally, redirect to login page
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 1500);
     } catch (error) {
       setMessage(error.response?.data?.error || "Signup failed");
       console.error("Signup Error:", error);
     }
   };
+  
 
   return (
     <div className="signup-wrapper">
